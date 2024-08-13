@@ -4,6 +4,7 @@ SourceMod plugin for Neotokyo that allows semi-fair spectating for dead players 
 A modified version of Rain's nt_fadefix plugin, intended for a different purpose.  
 Experimental, may or may not work properly.  
 Use nt_fadefix by Rain if you don't feel like experimenting.
+https://github.com/Rainyan/sourcemod-nt-fadefix
 
 ## Compile requirements
 * SourceMod 1.9 or newer.
