@@ -5,7 +5,7 @@ public Plugin myinfo = {
 	name = "NT PUG Spec",
 	description = "Allows semi-fair spectating for dead players in semi-comp games",
 	author = "Modified version of Rain's fadefix plugin by bauxite",
-	version = "0.1.1",
+	version = "0.1.2",
 	url = ""
 };
 
@@ -177,6 +177,8 @@ public void Event_PlayerSpawn(Event event, const char[] name, bool dontBroadcast
 	_in_death_fade[client] = false;
 
 	SendFadeMessageOne(client, FADE_FLAGS_CLEAR_FADE);
+
+	//check if accidentally set observer mode due to lag?
 }
 
 public void Event_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
@@ -219,15 +221,23 @@ public void Event_PlayerTeam(Event event, const char[] name, bool dontBroadcast)
 	
 	_in_death_fade[client] = false;
 	
-	if(!IsPlayerAlive(client) && event.GetInt("team") > TEAM_SPECTATOR)
+	if(event.GetInt("team") > TEAM_SPECTATOR)
 	{
 		RequestFrame(SetObserverMode, client);
 	}
 }
 
-void SetObserverMode(int client)
+void SetObserverMode(int client) // need to make sure the player is dead, might need more thorough check
 {
-	SetEntProp(client, Prop_Data, "m_iObserverMode", 4); // so the display doesn't mess up when mp_forcecamera is enabled
+	if(!IsClientInGame(client))
+	{
+		return;
+	}
+
+	if(!IsPlayerAlive(client))
+	{
+		SetEntProp(client, Prop_Data, "m_iObserverMode", 4); // so the display doesn't mess up when mp_forcecamera is enabled
+	}
 }
 
 public Action Timer_FadePlayer(Handle timer, int userid)
