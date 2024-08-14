@@ -5,7 +5,7 @@ public Plugin myinfo = {
 	name = "NT PUG Spec",
 	description = "Allows semi-fair spectating for dead players in semi-comp games",
 	author = "Modified version of Rain's fadefix plugin by bauxite",
-	version = "0.1.3",
+	version = "0.1.4",
 	url = ""
 };
 
@@ -223,6 +223,11 @@ public void Event_PlayerTeam(Event event, const char[] name, bool dontBroadcast)
 
 void SetObserverMode(int client) // need to make sure the player is dead and not in team 0 or 1, might need more thorough check
 {
+	if(client <= 0 || client > MaxClients)
+	{
+		return;
+	}
+
 	if(!IsClientInGame(client) || GetClientTeam(client) <= TEAM_SPECTATOR || IsPlayerAlive(client))
 	{
 		return;
