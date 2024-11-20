@@ -2,8 +2,7 @@
 
 SourceMod plugin for Neotokyo that allows semi-fair spectating for dead players in semi-comp games. It's still possible to *ghost* using this plugin but mainly when rotating the camera to look behind a teammate, vastly reduced usefulness for ghosting than free-camera, and much better than black-screen, although not suitable for tournament play.  
 
-A modified version of Rain's nt_fadefix plugin, intended for a different purpose, experimental, may or may not work properly.  
-Use nt_fadefix by Rain if you don't feel like experimenting.  
+A modified version of Rain's nt_fadefix plugin, intended for a different purpose, experimental, may or may not work properly. Use nt_fadefix by Rain if you don't feel like experimenting.  
 https://github.com/Rainyan/sourcemod-nt-fadefix  
 
 ## Compile requirements
